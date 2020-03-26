@@ -40,7 +40,7 @@ const db = mysql.createConnection({
   user: "root",
 
   // Your password
-  password: "Ac3X3n0Pil0t.923",
+  password: "",
   database: "employee"
 });
 db.connect(function(err) {
@@ -130,17 +130,6 @@ const viewDepartment = () => {
     if (err) throw err;
     console.table(result);
     start();
-  });
-};
-
-const selectWhere = (tableInput, colToSearch, valOfCol, callback) => {
-  const queryString = "SELECT * FROM ?? WHERE ?? = ?";
-  db.query(queryString, [tableInput, colToSearch, valOfCol], function(
-    err,
-    result
-  ) {
-    if (err) throw err;
-    return callback(result);
   });
 };
 
@@ -290,12 +279,12 @@ const addEmployee = () => {
                     let managerId;
                     answer.manager === "None"
                       ? (managerId = null)
-                      : (managerId = manId[0].id); //<-- see above comment about I hso
+                      : (managerId = manId[0].employeeID); //<-- see above comment about I hso
 
                     dbAddEmployee(
                       answer.firstname,
                       answer.lastname,
-                      roleId[0].id,
+                      roleId[0].roleID,
                       managerId
                     );
                   }
